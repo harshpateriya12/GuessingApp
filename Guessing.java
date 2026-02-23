@@ -6,6 +6,21 @@ public class Guessing {
 		GameConfig game = new GameConfig();
 		game.showRules();
 		
+		Scanner sc = new Scanner(System.in);
+		int attempts = 0;
+		
+		while(attempts < game.getMaxAttempts()){
+			System.out.print("Enter your guess");
+			int guess = sc.nextInt();
+			attempts++;
+			
+			String result = GuessValidator.validateGuess(guess, game.getTargetNumber());
+			System.out.println(result);
+			
+			if("correct".equals(result)){
+				break;
+			}
+		}
 		
 	}
 }
