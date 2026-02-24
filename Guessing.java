@@ -14,7 +14,10 @@ public class Guessing {
 			int guess = sc.nextInt();
 			attempts++;
 			
+			
 			String result = GuessValidator.validateGuess(guess, game.getTargetNumber());
+			String hint = HintService.generateHint(game.getTargetNumber(), attempts);
+			System.out.println(hint);
 			System.out.println(result);
 			
 			if("correct".equals(result)){
