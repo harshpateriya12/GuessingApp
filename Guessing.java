@@ -2,14 +2,23 @@ import java.util.Random;
 import java.util.Scanner;
 public class Guessing {
 	public static void main(String[] args) throws InvalidInputException{
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to guessing app");
+		
+		
+		System.out.print("Enter player Name: ");
+		String player = sc.nextLine();
+		
 		GameConfig game = new GameConfig();
 		game.showRules();
 		
-		Scanner sc = new Scanner(System.in);
+		
 		int attempts = 0;
 		
+		boolean win = false;
+		
 		while(attempts < game.getMaxAttempts()){
+			
 			System.out.print("Enter your guess");
 			//int guess = ValidationService.validateInput(sc.nextLine());
 			
@@ -34,9 +43,12 @@ public class Guessing {
 			System.out.println(result);
 			
 			if("correct".equals(result)){
+				win = true;
 				break;
 			}
 		}
+		
+		StorageService.saveResult(player, attempts, win);
 		
 	}
 }
